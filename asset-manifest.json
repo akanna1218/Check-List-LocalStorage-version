@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Check-List-LocalStorage-version.git/static/css/main.cf0e8353.css",
+    "main.js": "/Check-List-LocalStorage-version.git/static/js/main.2751ce37.js",
+    "static/js/787.30b79000.chunk.js": "/Check-List-LocalStorage-version.git/static/js/787.30b79000.chunk.js",
+    "index.html": "/Check-List-LocalStorage-version.git/index.html",
+    "main.cf0e8353.css.map": "/Check-List-LocalStorage-version.git/static/css/main.cf0e8353.css.map",
+    "main.2751ce37.js.map": "/Check-List-LocalStorage-version.git/static/js/main.2751ce37.js.map",
+    "787.30b79000.chunk.js.map": "/Check-List-LocalStorage-version.git/static/js/787.30b79000.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf0e8353.css",
+    "static/js/main.2751ce37.js"
+  ]
+}

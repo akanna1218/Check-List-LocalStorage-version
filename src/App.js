@@ -136,7 +136,8 @@ function App() {
   const HandleEditSubmit = async (id,e) => {
     const edittedNote = { id, item: editNote, cpl: false };                                                           // pass the entire property , and change the value of the property that you have editted. 
     try {
-      setItems([...Items, edittedNote])
+      const AddingEdittedNote= Items.map((i)=>i.id === id?{...i,item:edittedNote.item}:i)                            // here we are adding a one of the property which is inside an object , that ...i keeps other two properties remain same .
+      setItems(AddingEdittedNote)
       setEditNote("");
       navigateToHome('/')
     } 

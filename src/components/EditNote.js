@@ -14,13 +14,14 @@ const EditNote = ({Items,editNote,setEditNote,HandleEditSubmit}) => {
   return (
     <div>
       <input
+      type='text'
       value={editNote}
       onChange={(e)=>setEditNote(e.target.value)}>
       </input>
       <button
-      type='submit'
       onClick={()=>HandleEditSubmit(editingNote.id)}
-      tabIndex={0}>
+      tabIndex={0}
+      style={{marginLeft:"5px"}}>
     Submit
       </button>
     </div>

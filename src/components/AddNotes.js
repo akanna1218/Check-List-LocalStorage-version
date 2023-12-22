@@ -7,7 +7,7 @@ function AddNotes({newNote,setNewnote,HandleNewnote,len,setErr}){
         <form className='AddNote' style={{textAlign:'center'}}>
             
             <label htmlFor="addNote"></label>
-            <input type="text"
+            <input  className="aNote" type="text"
                     style={{marginTop:"4px"}}
                     placeholder='Add Note'
                     value={newNote} 

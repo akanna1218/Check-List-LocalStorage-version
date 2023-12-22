@@ -5,8 +5,16 @@ header{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+@media (max-width: 767px){
 
+    .App .aNote {
+margin-left: 7px;
+}
+.App .SearchNote{
+    margin-right: 30px;
+}
 
+}
 
 .Box{
     height:max-content;

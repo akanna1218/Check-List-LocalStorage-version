@@ -4,11 +4,12 @@ import { FaRegCalendarPlus } from "react-icons/fa";
 
 function AddNotes({newNote,setNewnote,HandleNewnote,len,setErr}){
     return(
-        <form className='AddNote' style={{textAlign:'center'}}>
+        <form className='AddNote' >
             
-            <label htmlFor="addNote"></label>
-            <input  className="aNote" type="text"
-                    style={{marginTop:"4px"}}
+            <label htmlFor="addNote">
+
+            <input  className="aNote" 
+                    type="text"
                     placeholder='Add Note'
                     value={newNote} 
                     required
@@ -16,14 +17,17 @@ function AddNotes({newNote,setNewnote,HandleNewnote,len,setErr}){
 
             />
 
+            </label>
+
           {setNewnote&&
-           <button 
-           
+           <label htmlFor='Add Note Button'><button 
+                className='AddButton'
                 onClick={HandleNewnote} 
                 >
                     <FaRegCalendarPlus 
                     tabIndex={0}        />
             </button>
+            </label>
             }
 
         </form> // note here form not forms ,

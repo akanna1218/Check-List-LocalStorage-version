@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = ({Items}) => {
   return ( 
-<footer>
+<footer className='footer'>
 
     <p>
       {` You Have  ${Items.length} pending task .`}

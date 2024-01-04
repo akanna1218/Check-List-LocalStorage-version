@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams} from 'react-router-dom'
 import { useEffect } from 'react'
-const EditNote = ({Items,editNote,setEditNote,HandleEditSubmit}) => {
+const EditNote = ({Items,editNote,setEditNote,isEditing,setEditing,HandleEditSubmit}) => {
 
   const {id}=useParams();          // use params will get id from the link which sent by the routes and it is destructured here {}
   const editingNote=Items.find((Singlenote)=>(Singlenote.id).toString()===id);
@@ -10,9 +10,18 @@ const EditNote = ({Items,editNote,setEditNote,HandleEditSubmit}) => {
   useEffect(()=>{
     if(editingNote){                // while using find if there is any element present . 
     setEditNote(editingNote.item)   // then we should set that element to the set edit
-  }},[editingNote,setEditNote,Items])   // if we click different edit button the edit bar value should change so mention editing note, and if that changes that will be set to set edit so change setEdit , this editing will modify the entire data so mention Items , main state
+    // setEditing(true)
+  }
+else{
+  setEditNote("")
+  setEditing(false)
+}
+},[editingNote,setEditNote,Items])   // if we click different edit button the edit bar value should change so mention editing note, and if that changes that will be set to set edit so change setEdit , this editing will modify the entire data so mention Items , main state
+  
   return (
-    <div className='editNote'>
+    <form>
+    {isEditing &&
+      <div className='editNote'>
       <input
       type='text'
       value={editNote}
@@ -24,8 +33,10 @@ const EditNote = ({Items,editNote,setEditNote,HandleEditSubmit}) => {
       style={{marginLeft:"5px"}}>
     Submit
       </button>
-    </div>
-  )
+    </div>}</form>
+  );
 }
+
+
 
 export default EditNote

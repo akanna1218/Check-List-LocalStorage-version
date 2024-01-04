@@ -23,8 +23,10 @@ function App() {
   const [newNote, setNewnote] = useState("");
   const [search, setSearch] = useState("");
   const [editNote, setEditNote] = useState("");
-  const navigateToHome=useNavigate()
+  const navigateToHome=useNavigate();
   const len = Items.length;
+  const [isEditing,setEditing]=useState(false);
+
 
   // Uncomment for using normal fetchmethod
   // const API_Fetcz = "http://localhost:3500/things";
@@ -118,6 +120,7 @@ function App() {
       const NewListToExist = [...Items, NewNoteFromUser];                                                             // this because we want the old data too with the main State.
       setItems(NewListToExist);
 
+
       // Uncomment for using normal fetchmethod
       // const PostOptions = {
       //   method: "POST",
@@ -165,6 +168,7 @@ function App() {
           Itm.item.toLowerCase().includes(search.toLowerCase())
         )}
         HandleCheck={HandleCheck}
+        setEditing={setEditing}
         HandleDelete={HandleDelete}
       />
       <Routes>
@@ -173,6 +177,8 @@ function App() {
           element={
             <EditNote
               Items={Items}
+              isEditing={isEditing}
+              setEditing={setEditing}
               editNote={editNote}
               setEditNote={setEditNote}
               HandleEditSubmit={HandleEditSubmit}

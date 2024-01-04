@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 
 
-const Content = ({ Items, HandleCheck, search, HandleDelete }) => {
+const Content = ({ Items, HandleCheck, search, HandleDelete,setEditing }) => {
  
   if (Items.length === 0) {
     return (
@@ -44,6 +44,7 @@ const Content = ({ Items, HandleCheck, search, HandleDelete }) => {
               <Link to={`/editNote/${item.id}`}><button
               className="edit"
               type='text'
+              onClick={setEditing(true)}
             >
                 <FaEdit />
               </button></Link>

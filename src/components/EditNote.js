@@ -12,7 +12,7 @@ const EditNote = ({Items,editNote,setEditNote,HandleEditSubmit}) => {
     setEditNote(editingNote.item)   // then we should set that element to the set edit
   }},[editingNote,setEditNote,Items])   // if we click different edit button the edit bar value should change so mention editing note, and if that changes that will be set to set edit so change setEdit , this editing will modify the entire data so mention Items , main state
   return (
-    <div>
+    <div className='editNote'>
       <input
       type='text'
       value={editNote}

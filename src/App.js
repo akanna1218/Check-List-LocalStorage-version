@@ -93,6 +93,8 @@ function App() {
       
       const ItemToDelete = Items.filter((itdel) => itdel.id !== id);
       setItems(ItemToDelete);
+      navigateToHome('/');
+
 
       // Uncomment for using normal fetchmethod
       // const DeletOptions = { method: "DELETE" }; // while deleting we dont need all infos just give path and the method.

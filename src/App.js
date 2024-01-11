@@ -5,7 +5,6 @@ import Content from "./Content";
 import Footer from "./components/Footer";
 import AddNotes from "./components/AddNotes";
 import SearchNote from "./components/SearchNote";
-import { Routes, Route ,useNavigate} from "react-router-dom";
 import EditNote from "./components/EditNote";
 
 // Uncomment for using normal fetchmethod
@@ -16,16 +15,15 @@ import EditNote from "./components/EditNote";
 //            USESTATES.
 
 function App() {
-  const [Items, setItems] = useState( ()=>{
-    const storeLocal=localStorage.getItem('user');                                                    // get the local storage by giving the local storage name
-      return storeLocal?JSON.parse(storeLocal):[]                                                       // then check anything present in local storage if yes parse it if no make it as empty []
-    });                                                           // here we don't have to pass the api link bcaz that is in different format , instead in the Api fetching function we convert the data and pass that variable to the setState
+  const [Items, setItems] = useState(() => {
+    const storeLocal = localStorage.getItem('user');                                                    // get the local storage by giving the local storage name
+    return storeLocal ? JSON.parse(storeLocal) : []                                                       // then check anything present in local storage if yes parse it if no make it as empty []
+  });                                                           // here we don't have to pass the api link bcaz that is in different format , instead in the Api fetching function we convert the data and pass that variable to the setState
   const [newNote, setNewnote] = useState("");
   const [search, setSearch] = useState("");
+  const [editingId, seteditingId] = useState(null)
   const [editNote, setEditNote] = useState("");
-  const navigateToHome=useNavigate();
   const len = Items.length;
-  const [isEditing,setEditing]=useState(false);
 
 
   // Uncomment for using normal fetchmethod
@@ -38,11 +36,11 @@ function App() {
   //  return storeLocal?JSON.parse(storeLocal):[]                                                       // then check anything present in local storage if yes parse it if no make it as empty []
   //}
 
-  
 
-  
 
-  
+
+
+
 
   //uncomment thiis for using setting interval  
   //   setTimeout(() => {
@@ -61,7 +59,7 @@ function App() {
   //              FUNCTIONS
 
   const HandleCheck = async (id) => {
-                                                                                                                      // the main state data which is Items is an array so you have iterate them
+    // the main state data which is Items is an array so you have iterate them
 
     try {
       const listOfitems = Items.map((itmIterator) =>
@@ -85,15 +83,16 @@ function App() {
     // const selectedUrl = `${API_Fetcz}/${id}`;
     // const result = await apiCrud(selectedUrl, UpdateOptions);
     // if (result) setErrMsg(result);
-  
+
   };
 
   const HandleDelete = async (id) => {
     try {
-      
+
       const ItemToDelete = Items.filter((itdel) => itdel.id !== id);
       setItems(ItemToDelete);
-      navigateToHome('/');
+      seteditingId(null);
+      // this will prevent the edit input bar to appear again , if a new content is added.
 
 
       // Uncomment for using normal fetchmethod
@@ -131,26 +130,35 @@ function App() {
       // };
       // const result = await apiCrud(API_Fetcz, PostOptions); // here we are calling the Api crud function and passing api link and the method we are going to do with it.
       // if (result) setErrMsg(result); // this func will return value which is err msg , and we are storing it to the setErr if there is ny error thrown while fetching.
-    
+
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  const HandleEditButton = async (id, item) => {                  // this will collect the id of the edit button you clicked
+    try {
+      seteditingId(id)                                        // setting it to the useState that maintains the edit notes id
+      setEditNote(item)
+    }                                      // setting the note to the input bar of the edit component
+    catch (err) {
+      console.log(err.message);
+    }
+  }
 
-  const HandleEditSubmit = async (id,e) => {
+
+  const HandleEditSubmit = async (id) => {
     const edittedNote = { id, item: editNote, cpl: false };                                                           // pass the entire property , and change the value of the property that you have editted. 
     try {
-      const AddingEdittedNote= Items.map((i)=>i.id === id?{...i,item:edittedNote.item}:i)                            // here we are adding a one of the property which is inside an object , that ...i keeps other two properties remain same .
+      const AddingEdittedNote = Items.map((i) => i.id === id ? { ...i, item: edittedNote.item } : i)                            // here we are adding a one of the property which is inside an object , that ...i keeps other two properties remain same .
       setItems(AddingEdittedNote)
       setEditNote("");
-      navigateToHome('/')
-    } 
+    }
     catch (err) {
       console.log(err.message);
     }
   };
-  
+
 
   return (
     <div className="App">
@@ -162,36 +170,30 @@ function App() {
         HandleNewnote={HandleNewnote}
         len={len}
       />
-      
+
       <Content
         setItems={setItems}
         search={search}
+        editingId={editingId}
         Items={Items.filter((Itm) =>
           Itm.item.toLowerCase().includes(search.toLowerCase())
         )}
         HandleCheck={HandleCheck}
-        setEditing={setEditing}
+        HandleEditButton={HandleEditButton}
         HandleDelete={HandleDelete}
       />
-      <Routes>
-        <Route
-          path="/editNote/:id"
-          element={
-            <EditNote
-              Items={Items}
-              isEditing={isEditing}
-              setEditing={setEditing}
-              editNote={editNote}
-              setEditNote={setEditNote}
-              HandleEditSubmit={HandleEditSubmit}
-            />
-          }
-        ></Route>
-        {/** if any Link component with the same path as this route's path that will passed to the elemnt in this Route, the :id is used to get the id from the Link component and pass it to the target elemnt in the Route. By using use params we can get the id from route and use it to the target component */}
-      </Routes>
+
+      <EditNote
+        Items={Items}
+        editNote={editNote}
+        setEditNote={setEditNote}
+        editingId={editingId}
+        HandleEditSubmit={HandleEditSubmit}
+      />
+
 
       <Footer length={Items.length} Items={Items} />
-      
+
     </div>
   );
 }

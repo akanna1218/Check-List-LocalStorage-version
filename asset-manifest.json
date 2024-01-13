@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Check-List-LocalStorage-version/static/css/main.f18e3820.css",
-    "main.js": "/Check-List-LocalStorage-version/static/js/main.a35ec919.js",
+    "main.js": "/Check-List-LocalStorage-version/static/js/main.b758734f.js",
     "static/js/787.30b79000.chunk.js": "/Check-List-LocalStorage-version/static/js/787.30b79000.chunk.js",
     "index.html": "/Check-List-LocalStorage-version/index.html",
     "main.f18e3820.css.map": "/Check-List-LocalStorage-version/static/css/main.f18e3820.css.map",
-    "main.a35ec919.js.map": "/Check-List-LocalStorage-version/static/js/main.a35ec919.js.map",
+    "main.b758734f.js.map": "/Check-List-LocalStorage-version/static/js/main.b758734f.js.map",
     "787.30b79000.chunk.js.map": "/Check-List-LocalStorage-version/static/js/787.30b79000.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f18e3820.css",
-    "static/js/main.a35ec919.js"
+    "static/js/main.b758734f.js"
   ]
 }

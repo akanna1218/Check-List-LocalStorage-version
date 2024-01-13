@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import DataContext from '../context/DataContext'
 
 const Header = () => {
+  const {headerInfo}=useContext(DataContext)
   return (
   <header className='header'> 
 
     <h1>
-      To do list
-    </h1>
+{headerInfo}    </h1>
 
   </header>
   

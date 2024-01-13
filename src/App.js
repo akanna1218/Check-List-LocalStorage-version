@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import AddNotes from "./components/AddNotes";
 import SearchNote from "./components/SearchNote";
 import EditNote from "./components/EditNote";
+import { DataProvider } from "./context/DataContext";
 
 // Uncomment for using normal fetchmethod
 // import apiCrud from "./components/apiCrud";
@@ -162,7 +163,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+     <DataProvider> <Header /> </DataProvider>
       <SearchNote search={search} setSearch={setSearch} />
       <AddNotes
         newNote={newNote}
@@ -192,7 +193,7 @@ function App() {
       />
 
 
-      <Footer length={Items.length} Items={Items} />
+      <Footer length={Items.length} Items={Items} /> 
 
     </div>
   );
